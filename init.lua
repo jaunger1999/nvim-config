@@ -22,8 +22,6 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.api.nvim_create_autocmd("BufEnter", { command = "normal zR" })
 
-vim.cmd [[colorscheme tokyonight]]
-
 -- telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
@@ -35,4 +33,6 @@ vim.keymap.set('n', '<leader>ft', '<cmd>Floaterminal<Enter>', { desc = 'Open flo
 
 vim.keymap.set('n', 'gr', vim.lsp.buf.rename, { desc = 'Rename symbol' })
 
-vim.o.shell = "powershell"
+if vim.fn.has('win32') == 1 then
+	vim.o.shell = "powershell"
+end
